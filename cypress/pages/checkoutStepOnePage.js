@@ -12,6 +12,10 @@ export class CheckoutStepOnePage {
         cancelButton: () => cy.get('#cancel')
     }
 
+    elements = {
+        errorMessage: () => cy.get('[data-test="error"]')
+    }
+
 
     typeFirstName(firstName) {
         this.inputs.firstNameInput()

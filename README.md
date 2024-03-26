@@ -12,7 +12,7 @@ Instruction how to run test
 - Tests are automated in e2e folder
     - in "loginTest.cy.js" there are tests related to login page with various combinations of providing login & password
     - in "addToCartTest.cy.js" there are tests which covers such paths as: adding single item to cart, adding multiple items to cart, removing items from cart and verifying sorting funcionality
-    - in "makeAnOrderTest.cy.js" E2E test is written which covers path since login, through adding 2 products and completing checkout process
+    - in "makeAnOrderTest.cy.js" E2E test is written which covers path since login, through adding 2 products and completing checkout process. Additionally one more test which checks validation of inputs during checkout is added
 - Pages with selectors and methods are described in "pages" folder
 
 NOTE!!!!!!: 

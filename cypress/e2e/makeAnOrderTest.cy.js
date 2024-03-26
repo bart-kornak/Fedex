@@ -29,7 +29,7 @@ describe('Make an order test suite', () => {
       cy.login(testData.correctUsername, testData.correctPassword)
     })
   
-    it('(E2E) Select item(s), provide personal data and checkout', () => {
+    it('(E2E) Select 2 items, provide personal data and checkout', () => {
         mainPage.clickAddToCartButton(testData.product)
         mainPage.clickAddToCartButton(testData.product2)
         mainPage.clickCartButton()
@@ -53,5 +53,33 @@ describe('Make an order test suite', () => {
             .and('contain', 'Checkout: Complete!')
         checkoutCompletePage.clickBackHomeButton()
         cy.url().should('include', '/inventory.html')
+    })
+
+    it("Check validation of inputs in checkout's step one", () => {
+        mainPage.clickAddToCartButton(testData.product)
+        mainPage.clickAddToCartButton(testData.product2)
+        mainPage.clickCartButton()
+        cy.url().should('include', '/cart.html')
+        cartPage.elements.cartItem()
+            .should('have.length', 2)
+        cartPage.clickCheckoutButton()
+        cy.url().should('include', '/checkout-step-one.html')
+        checkoutStepOnePage.clickContinueButton();
+        checkoutStepOnePage.elements.errorMessage()
+            .should('be.visible')
+            .and('contain', 'Error: First Name is required')
+        checkoutStepOnePage.typeFirstName(testData.firstName)
+        checkoutStepOnePage.clickContinueButton();
+        checkoutStepOnePage.elements.errorMessage()
+            .should('be.visible')
+            .and('contain', 'Error: Last Name is required')
+        checkoutStepOnePage.typeLastName(testData.lastName)
+        checkoutStepOnePage.clickContinueButton();
+        checkoutStepOnePage.elements.errorMessage()
+            .should('be.visible')
+            .and('contain', 'Error: Postal Code is required')
+        checkoutStepOnePage.typePostalCode(testData.postalCode)
+        checkoutStepOnePage.clickContinueButton();
+        cy.url().should('include', '/checkout-step-two.html')
     })
 })
