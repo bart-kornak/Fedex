@@ -1,0 +1,14 @@
+Title: E2E Test: Select 2 items, provide personal data and checkout
+Env: https://www.saucedemo.com/
+
+Prequisities: Cypress installed and configured, user is not logged in
+
+1. Open page https://www.saucedemo.com/
+2. Provide correct credentials and log in
+3. Select 1st product (t-shirt)
+4. Selec 2nd product (backpack)
+5. Click on Cart icon in the top right corner
+6. Click checkout button
+7. Fulfill all data (first name, last name, postal code) and click continue
+8. Click on Finish button
+9. Click on Back Home button
